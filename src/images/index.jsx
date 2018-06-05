@@ -36,13 +36,13 @@ export default () => {
   ImageControls = () =>
     <div className="controls-container">
       <div className="controls-button" onClick={decrement}>
-        Dec
+        <
       </div>
       <div className="controls-button" onClick={flip}>
-        Flip
+        <img className={`${flipped() ? "" : "flipped"}`} src="/static/icons/flip.svg" />
       </div>
       <div className="controls-button" onClick={increment}>
-        Inc
+        >
       </div>
     </div>
 
@@ -52,7 +52,7 @@ export default () => {
       <ImageControls />
       <div className="image-wrapper">
         <div className="image-container">
-          <img className={`upside-down-image ${flipped() ? "flipped" : ""}`} src={images[indices[imageIndex()]]} />
+          <img className={`drawing ${flipped() ? "" : "upside-down"}`} src={images[indices[imageIndex()]]} />
         </div>
       </div>
     </div>

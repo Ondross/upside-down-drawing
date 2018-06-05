@@ -2,8 +2,6 @@ import S from 's-js'
 import * as Surplus from 'surplus'
 import data from 'surplus-mixin-data'
 
-
-
 const images = SArray([
   "/static/images/stravinsky.png",
   "/static/images/ballroom-dancer.png",
