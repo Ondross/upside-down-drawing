@@ -1,0 +1,50 @@
+body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background: #efefef;
+}
+.drawing-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 600px;
+  flex: 1 1 auto;
+}
+
+.controls-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  background: #787878;
+}
+.controls-button {
+  cursor: pointer;
+  border: 1px solid #373737;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+  background: #efefef;
+}
+
+.image-wrapper {
+  display: flex;
+  flex: 1 1 auto;
+  padding: 10px 20px;
+  justify-content: center;
+  background: white;
+}
+.image-container {
+  max-width: 100%;
+  max-height: 100%;
+}
+.upside-down-image {
+  transform: rotateZ(180deg);
+  max-height: 100%;
+  max-width: 100%;
+}
+.flipped {
+  transform: rotateZ(0deg);
+}
