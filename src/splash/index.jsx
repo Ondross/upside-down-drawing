@@ -17,7 +17,7 @@ export default (next) => {
         Upside Down Drawing
       </div>
       <div className="paragraph">
-        Our goal to see the world in shapes, rather than symbols. Upside down drawing helps trigger that mental shift.
+        Our goal is to see the world in shapes, rather than symbols. Upside down drawing helps trigger that mental shift.
       </div>
       <div className="paragraph">
         This is inspired by Chapter 4 of <a href="http://drawright.com/">Drawing on the Right Side of the Brain</a>.

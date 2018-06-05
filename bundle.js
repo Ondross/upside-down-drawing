@@ -11804,7 +11804,7 @@ exports.default = next => {
     __div1 = Surplus.createElement("div", "app-header", __);
     __div1.textContent = "Upside Down Drawing";
     __div2 = Surplus.createElement("div", "paragraph", __);
-    __div2.textContent = "Our goal to see the world in shapes, rather than symbols. Upside down drawing helps trigger that mental shift.";
+    __div2.textContent = "Our goal is to see the world in shapes, rather than symbols. Upside down drawing helps trigger that mental shift.";
     __div3 = Surplus.createElement("div", "paragraph", __);
     Surplus.createTextNode("This is inspired by Chapter 4 of ", __div3);
     __div3_a2 = Surplus.createElement("a", null, __div3);
