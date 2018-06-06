@@ -11853,7 +11853,7 @@ __webpack_require__(345);
 exports.default = next => {
 
   const root = function () {
-    var __, __div1, __div2, __div2_i2, __div3, __div3_a2, __div4, __div5;
+    var __, __div1, __div2, __div2_i2, __div3, __div3_a2, __div4, __div5, __div6;
     __ = Surplus.createElement("div", 'splash-container', null);
     __div1 = Surplus.createElement("div", "app-header", __);
     __div1.textContent = "Upside Down Drawing";
@@ -11861,7 +11861,7 @@ exports.default = next => {
     Surplus.createTextNode("Upside down drawing is a method of tricking our brain into seeing the world as shapes rather than symbols. By looking at objects in an unfamiliar perspective, we trick our left-brain into ignoring what things ", __div2);
     __div2_i2 = Surplus.createElement("i", null, __div2);
     __div2_i2.textContent = "should";
-    Surplus.createTextNode(" look like. This mental shift hels us focus on shapes, angles, and relationships.", __div2);
+    Surplus.createTextNode(" look like. Thanks to this mental shift, we can focus on shapes and relationships and see things more accurately.", __div2);
     __div3 = Surplus.createElement("div", "paragraph", __);
     Surplus.createTextNode("Read more in Chapter 4 of ", __div3);
     __div3_a2 = Surplus.createElement("a", null, __div3);
@@ -11869,10 +11869,12 @@ exports.default = next => {
     __div3_a2.textContent = "Drawing on the Right Side of the Brain";
     Surplus.createTextNode(" by Betty Edwards.", __div3);
     __div4 = Surplus.createElement("div", "paragraph", __);
-    __div4.textContent = "Before you start, turn on some instrumental music and make sure you won't be disturbed for at least 30 minutes. Try not to look at the drawings right side up until you're finished. I promise, you'll be surprised at the quality of your results!";
-    __div5 = Surplus.createElement("div", "button", __);
-    __div5.onclick = next;
-    __div5.textContent = "Go Upside Down";
+    __div4.textContent = "Before you start, turn on some instrumental music and make sure you won't be disturbed for at least 30 minutes.";
+    __div5 = Surplus.createElement("div", "paragraph", __);
+    __div5.textContent = "Pay attention to the shape of each line, not what it represents. Try not to look at the drawings right side up until you're finished. I promise, you'll be surprised at the quality of your results!";
+    __div6 = Surplus.createElement("div", "button", __);
+    __div6.onclick = next;
+    __div6.textContent = "Go Upside Down";
     return __;
   }();
 
