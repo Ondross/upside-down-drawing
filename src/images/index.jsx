@@ -70,7 +70,7 @@ export default () => {
       <div className="image-container">
         <img className={`drawing ${flipped() ? "" : "upside-down"}`} src={imageList[indices[imageIndex()]].src} />
         <div className="attribution">
-          <a target="blank" href={imageList[indices[imageIndex()]].attribution}>Attribution</a>
+          <a target="blank" href={imageList[indices[imageIndex()]].attribution}>Original Source</a>
         </div>
       </div>
     </div>,
@@ -82,12 +82,11 @@ export default () => {
     </div>,
   SearchIFrame = () =>
   // Scrolling set to no because there is a big when you click in image in the iframe after scrolling. We force you to click images and cycle through.
-  <iframe scrolling="no" className="search-frame upside-down" src={`https://www.bing.com/images/search?q=${searchTerm()}&go=Search&qs=ds&form=QBILPG`}>
+  <iframe scrolling="no" fn={(el) => {el.className = flipped() ? "search-frame upside-down" : "search-frame"}} src={`https://www.bing.com/images/search?q=${searchTerm()}&go=Search&qs=ds&form=QBILPG`}>
   </iframe>,
-  IFrameElement = <SearchIFrame />,
   ImageDisplay = () => {
     if (searchTerm()) {
-      return IFrameElement
+      return <SearchIFrame />
     } else if (showAllMode()) {
       return <AllImages />
     } else {
@@ -99,15 +98,6 @@ export default () => {
     ArrowLeft: decrement,
     ArrowRight: increment,
   }
-
-  // We manage the className separately for the iframe. Otherwise, Surplus sets the src of the iframe when we change the class, causing it to reload, ugh.
-  S.on(flipped, () => {
-    if (flipped()) {
-      IFrameElement.classList.remove('upside-down')
-    } else {
-      IFrameElement.classList.add('upside-down')
-    }
-  })
 
   S.on(imageIndex, () => searchTerm(''))
   S.on(showAllMode, () => searchTerm(''))
