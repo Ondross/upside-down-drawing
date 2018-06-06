@@ -20,7 +20,6 @@ export default () => {
       next = indices[indices.length - 1]
     }
     imageIndex(next)
-    searchTerm('')
   },
   flip = () => {
     flipped(!flipped())
@@ -32,16 +31,15 @@ export default () => {
       next = 0
     }
     imageIndex(next)
-    searchTerm('')
   },
   enableShowAll = () => {
-    searchTerm('')
     showAllMode(true)
   },
   setImage = (idx) => {
     const shuffledIndex = indices.indexOf(idx)
     imageIndex(shuffledIndex)
     showAllMode(false)
+    flipped(false)
   },
   searchInput = <input type="text" fn={data(searchTerm)} className="search-input" placeholder="Search" />,
   ImageControls = () =>
@@ -50,7 +48,7 @@ export default () => {
         <
       </div>
       <div className="button controls-button" onClick={flip}>
-        <img className={`${flipped() ? "" : "flipped"}`} src="/static/icons/flip.svg" />
+        <img className={flipped() ? "" : "flipped"} src="/static/icons/flip.svg" />
       </div>
       <div className="button controls-button" onClick={increment}>
         >
@@ -84,28 +82,42 @@ export default () => {
     </div>,
   SearchIFrame = () =>
   // Scrolling set to no because there is a big when you click in image in the iframe after scrolling. We force you to click images and cycle through.
-  <iframe scrolling="no" className={`search-frame ${flipped() ? "" : "upside-down"}`} src={`https://www.bing.com/images/search?q=${searchTerm()}&go=Search&qs=ds&form=QBILPG`}></iframe>,
+  <iframe scrolling="no" className="search-frame upside-down" src={`https://www.bing.com/images/search?q=${searchTerm()}&go=Search&qs=ds&form=QBILPG`}>
+  </iframe>,
+  IFrameElement = <SearchIFrame />,
   ImageDisplay = () => {
     if (searchTerm()) {
-      return <SearchIFrame />
+      return IFrameElement
     } else if (showAllMode()) {
       return <AllImages />
     } else {
       return <ShuffledImage />
     }
   }, keyCodeFunctions = {
-    38: flip,
-    40: flip,
-    37: decrement,
-    39: increment,
+    ArrowUp: flip,
+    ArrowDown: flip,
+    ArrowLeft: decrement,
+    ArrowRight: increment,
   }
 
-  document.body.addEventListener('keydown', ({keyCode}) => {
+  // We manage the className separately for the iframe. Otherwise, Surplus sets the src of the iframe when we change the class, causing it to reload, ugh.
+  S.on(flipped, () => {
+    if (flipped()) {
+      IFrameElement.classList.remove('upside-down')
+    } else {
+      IFrameElement.classList.add('upside-down')
+    }
+  })
+
+  S.on(imageIndex, () => searchTerm(''))
+  S.on(showAllMode, () => searchTerm(''))
+
+  document.body.addEventListener('keydown', ({key}) => {
     if (document.activeElement === searchInput) {
       return
     }
-    if (keyCodeFunctions[keyCode]) {
-      keyCodeFunctions[keyCode]()
+    if (keyCodeFunctions[key]) {
+      keyCodeFunctions[key]()
       return
     }
     searchInput.focus()
