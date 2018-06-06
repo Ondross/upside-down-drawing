@@ -24,7 +24,7 @@
 .search-input {
   border: 1px solid #efefef;
   border-radius: 6px;
-  padding: 5px;
+  padding: 5px 8px;
   margin: 5px;
   height: 40px;
   font-size: 21px;
@@ -58,6 +58,7 @@
   cursor: pointer;
   border: solid 1px #efefef;
   opacity: .8;
+  max-width: calc(33% - 7px);
 }
 .thumbnail:hover {
   opacity: 1;

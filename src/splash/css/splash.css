@@ -1,6 +1,6 @@
 .app-header {
   font-size: 24px;
-  margin: 12px 0;
+  margin: 8px 0 6px;
 }
 
 .splash-container {
@@ -14,4 +14,10 @@
 .footer {
   font-size: 12px;
   margin-top: 12px;
+}
+
+@media (max-device-width: 400px) {
+  .app-header {
+    margin-top: 2px;
+  }
 }

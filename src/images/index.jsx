@@ -41,20 +41,20 @@ export default () => {
     showAllMode(false)
     flipped(false)
   },
-  searchInput = <input type="text" fn={data(searchTerm)} className="search-input" placeholder="Search" />,
+  searchInput = <input type="text" fn={data(searchTerm)} className="search-input" placeholder="Search..." />,
   ImageControls = () =>
     <div className="controls-container">
-      <div className="button controls-button" onClick={decrement}>
+      <div className="button controls-button" onClick={decrement} title="Previous Image">
         <
       </div>
-      <div className="button controls-button" onClick={flip}>
+      <div className="button controls-button" onClick={flip} title="Flip Image">
         <img className={flipped() ? "" : "flipped"} src="/static/icons/flip.svg" />
       </div>
-      <div className="button controls-button" onClick={increment}>
+      <div className="button controls-button" onClick={increment} title="Next Image">
         >
       </div>
       {searchInput}
-      <div className="button controls-button" onClick={enableShowAll}>
+      <div className="button controls-button view-all" onClick={enableShowAll} title="View all">
         All
       </div>
     </div>,
