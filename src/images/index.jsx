@@ -11,6 +11,8 @@ export default () => {
   indices = shuffle([...Array(imageList.length)].map((_, i) => i)),
   imageIndex = S.data(0),
   flipped = S.data(false),
+  showAllMode = S.data(false),
+  searchTerm = S.data(''),
   decrement = () => {
     let next = imageIndex() - 1
     flipped(false)
@@ -18,6 +20,7 @@ export default () => {
       next = indices[indices.length - 1]
     }
     imageIndex(next)
+    searchTerm('')
   },
   flip = () => {
     flipped(!flipped())
@@ -29,30 +32,55 @@ export default () => {
       next = 0
     }
     imageIndex(next)
+    searchTerm('')
   },
-  searchTerm = S.data(''),
+  enableShowAll = () => {
+    searchTerm('')
+    showAllMode(true)
+  },
+  setImage = (idx) => {
+    const shuffledIndex = indices.indexOf(idx)
+    imageIndex(shuffledIndex)
+    showAllMode(false)
+  },
   searchInput = <input type="text" fn={data(searchTerm)} className="search-input" placeholder="Search" />,
   ImageControls = () =>
     <div className="controls-container">
-      <div className="controls-button" onClick={decrement}>
+      <div className="button controls-button" onClick={decrement}>
         <
       </div>
-      <div className="controls-button" onClick={flip}>
+      <div className="button controls-button" onClick={flip}>
         <img className={`${flipped() ? "" : "flipped"}`} src="/static/icons/flip.svg" />
       </div>
-      <div className="controls-button" onClick={increment}>
+      <div className="button controls-button" onClick={increment}>
         >
       </div>
       {searchInput}
+      <div className="button controls-button" onClick={enableShowAll}>
+        All
+      </div>
     </div>,
+  TopBar = () => {
+    if (showAllMode()) {
+      return <div></div>
+    } else {
+      return <ImageControls />
+    }
+  },
   ShuffledImage = () =>
     <div className="image-wrapper">
       <div className="image-container">
         <img className={`drawing ${flipped() ? "" : "upside-down"}`} src={imageList[indices[imageIndex()]].src} />
         <div className="attribution">
-          <a href={imageList[indices[imageIndex()]].attribution}>Attribution</a>
+          <a target="blank" href={imageList[indices[imageIndex()]].attribution}>Attribution</a>
         </div>
       </div>
+    </div>,
+  AllImages = () =>
+    <div>
+      {imageList.map((image, idx) =>
+        <img onClick={() => {setImage(idx)}} className="thumbnail" src={image.src} />
+      )}
     </div>,
   SearchIFrame = () =>
   // Scrolling set to no because there is a big when you click in image in the iframe after scrolling. We force you to click images and cycle through.
@@ -60,6 +88,8 @@ export default () => {
   ImageDisplay = () => {
     if (searchTerm()) {
       return <SearchIFrame />
+    } else if (showAllMode()) {
+      return <AllImages />
     } else {
       return <ShuffledImage />
     }
@@ -83,7 +113,7 @@ export default () => {
 
   const root =
     <div className="drawing-container">
-      <ImageControls />
+      <TopBar />
       <ImageDisplay />
     </div>
 
