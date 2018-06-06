@@ -14625,6 +14625,9 @@ __webpack_require__(358);
 __webpack_require__(360);
 
 exports.default = () => {
+  if (window.location.origin.includes('localhost')) {
+    return;
+  }
   const session = Date.now(),
         updateSessionLength = (db, uid) => {
     const update = {};
