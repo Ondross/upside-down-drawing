@@ -32,6 +32,16 @@
   width: 40px;
 }
 
+.search-input {
+  border: 1px solid #efefef;
+  border-radius: 6px;
+  padding: 5px;
+  margin: 5px;
+  height: 40px;
+  font-size: 21px;
+  opacity: .8;
+}
+
 .image-wrapper {
   display: flex;
   flex: 1 1 auto;
@@ -41,7 +51,9 @@
 }
 .image-container {
   max-height: 100%;
+  width: 100%;
   text-align: center;
+  position: relative;
 }
 .drawing {
   height: 100%;
