@@ -13,19 +13,22 @@ export default (next) => {
         Upside Down Drawing
       </div>
       <div className="paragraph">
-        Upside down drawing is a method of tricking our brain into seeing the world as shapes rather than symbols. By looking at objects in an unfamiliar perspective, we trick our left-brain into ignoring what things <i>should</i> look like. Thanks to this mental shift, we can focus on shapes and relationships and see things more accurately.
+        Upside down drawing is a trick for seeing the world as shapes rather than symbols. Normally when you draw, your left brain insists that everything is a symbol, so you draw what things <i>ought</i> to look like. By putting images in an unfamiliar perspective, you silence that voice and observe what things truly look like.
       </div>
       <div className="paragraph">
-        Read more in Chapter 4 of <a href="http://drawright.com/">Drawing on the Right Side of the Brain</a> by Betty Edwards.
+        Finding good source images isn't super easy, so this site provides some fun ones to start with.
       </div>
       <div className="paragraph">
-        Before you start, turn on some instrumental music and make sure you won't be disturbed for at least 30 minutes.
+        All you need is pencil and some paper taped to your desk. Make sure you're undisturbed for 30 minutes.
       </div>
       <div className="paragraph">
-        Pay attention to the shape of each line, not what it represents. Try not to look at the drawings right side up until you're finished. I promise, you'll be surprised at the quality of your results!
+        As you draw, pay close attention to the shape of each line, not what it represents. Don't flip the drawings over until you're finished—I promise, you'll be surprised at the quality of your results!
       </div>
       <div className="button" onClick={next}>
-        Go Upside Down
+        Start Drawing
+      </div>
+      <div className="footer">
+        Read more about upside down drawing in Chapter 4 of <a href="http://drawright.com/">Drawing on the Right Side of the Brain</a> by Betty Edwards.
       </div>
     </div>
 

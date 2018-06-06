@@ -1,6 +1,6 @@
 .app-header {
   font-size: 24px;
-  margin-top: 20px;
+  margin: 12px 0;
 }
 
 .splash-container {
@@ -8,5 +8,10 @@
 }
 
 .paragraph {
-  margin: 10px 0 12px;
+  margin: 0 0 12px;
+}
+
+.footer {
+  font-size: 12px;
+  margin-top: 12px;
 }
