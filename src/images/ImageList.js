@@ -65,7 +65,7 @@ export const imageList = [
     attribution: "https://www.clipartqueen.com/image-files/dog-sketches-small-angry-dgo.jpg",
   },
   {
-    src: "/static/images/owlKid.jpg",
+    src: "/static/images/likeToSinga.jpg",
     attribution: "https://femkegielkens.files.wordpress.com/2012/11/img_0724.jpg",
   },
   {
