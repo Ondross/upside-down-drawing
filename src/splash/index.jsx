@@ -7,10 +7,6 @@ require('upsideDownDrawing/Splash/css/splash.css')
 
 export default (next) => {
 
-  const showSplash = S.data(true)
-
-  setTimeout(() => {showSplash(false)}, 1000)
-
   const root =
     <div className='splash-container'>
       <div className="app-header">

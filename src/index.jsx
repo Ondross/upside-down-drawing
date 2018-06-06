@@ -5,7 +5,7 @@ import Splash from 'upsideDownDrawing/Splash'
 
 require('upsideDownDrawing/css/style.css')
 
-const showSplash = S.data(false)
+const showSplash = S.data(true)
 
 const next = () => {
   showSplash(false)
