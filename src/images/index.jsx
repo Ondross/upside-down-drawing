@@ -60,7 +60,9 @@ export default () => {
     </div>,
   TopBar = () => {
     if (showAllMode()) {
-      return <div></div>
+      return <div className="controls-container app-header">
+        Upside Down Drawing
+      </div>
     } else {
       return <ImageControls />
     }
@@ -75,7 +77,7 @@ export default () => {
       </div>
     </div>,
   AllImages = () =>
-    <div>
+    <div className="thumbnails">
       {imageList.map((image, idx) =>
         <img onClick={() => {setImage(idx)}} className="thumbnail" src={image.src} />
       )}

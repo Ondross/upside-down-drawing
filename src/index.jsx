@@ -3,13 +3,11 @@ import * as Surplus from 'surplus'
 import Images from 'upsideDownDrawing/Images'
 import Splash from 'upsideDownDrawing/Splash'
 import Analytics from 'upsideDownDrawing/Analytics'
+require('upsideDownDrawing/css/style.css')
 
 Analytics()
 
-require('upsideDownDrawing/css/style.css')
-
 const showSplash = S.data(true)
-
 const next = () => {
   showSplash(false)
 }

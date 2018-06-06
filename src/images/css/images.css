@@ -5,6 +5,11 @@
   flex: 1 1 auto;
 }
 
+.controls-header {
+  font-size: 24px;
+  height: 40px;
+}
+
 .controls-container {
   display: flex;
   width: 100%;
@@ -23,7 +28,7 @@
 
 .search-input {
   border: 1px solid #efefef;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 5px 8px;
   margin: 5px;
   height: 40px;
@@ -49,11 +54,15 @@
   max-width: 100%;
   object-fit: contain;
 }
+
+.thumbnails {
+  padding: 10px 0;
+}
 .thumbnail {
   object-fit: cover;
   width: 128px;
   height: 128px;
-  border-radius: 6px;
+  border-radius: 4px;
   margin: 3px;
   cursor: pointer;
   border: solid 1px #efefef;
