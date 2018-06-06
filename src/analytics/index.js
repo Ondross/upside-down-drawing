@@ -3,6 +3,9 @@ require("firebase/auth")
 require("firebase/database")
 
 export default () => {
+  if (window.location.origin.includes('localhost')) {
+    return
+  }
   const session = Date.now(),
   updateSessionLength = (db, uid) => {
     const update = {}
