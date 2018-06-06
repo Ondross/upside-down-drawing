@@ -39,14 +39,11 @@
 .image-wrapper {
   display: flex;
   flex: 1 1 auto;
-  padding: 10px 20px;
+  padding: 10px 0 2px;
   justify-content: center;
-  background: white;
 }
 .image-container {
   max-height: 100%;
-  width: 100%;
-  text-align: center;
   position: relative;
 }
 .drawing {
@@ -81,10 +78,10 @@
 
 .attribution {
   font-size: 10px;
-  position: absolute;
-  bottom: 0;
-  left: 2px;
-  letter-spacing: 1.2;
+  position: relative;
+  margin-top: -24px;
+  z-index: 2;
+  letter-spacing: 1.2px;
 }
 .attribution a {
   color: #373737;

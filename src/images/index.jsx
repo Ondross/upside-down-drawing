@@ -15,7 +15,6 @@ export default () => {
   searchTerm = S.data(''),
   decrement = () => {
     let next = imageIndex() - 1
-    flipped(false)
     if (next < 0) {
       next = indices[indices.length - 1]
     }
@@ -26,7 +25,6 @@ export default () => {
   },
   increment = () => {
     let next = imageIndex() + 1
-    flipped(false)
     if (next >= indices.length) {
       next = 0
     }
@@ -37,9 +35,10 @@ export default () => {
   },
   setImage = (idx) => {
     const shuffledIndex = indices.indexOf(idx)
-    imageIndex(shuffledIndex)
-    showAllMode(false)
-    flipped(false)
+    S.freeze(() => {
+      imageIndex(shuffledIndex)
+      showAllMode(false)
+    })
   },
   searchInput = <input type="text" fn={data(searchTerm)} className="search-input" placeholder="Search..." />,
   ImageControls = () =>
@@ -72,7 +71,7 @@ export default () => {
       <div className="image-container">
         <img className={`drawing ${flipped() ? "" : "upside-down"}`} src={imageList[indices[imageIndex()]].src} />
         <div className="attribution">
-          <a target="blank" href={imageList[indices[imageIndex()]].attribution}>Original Source</a>
+          <a target="blank" href={imageList[indices[imageIndex()]].attribution}>Original</a>
         </div>
       </div>
     </div>,
@@ -99,10 +98,15 @@ export default () => {
     ArrowDown: flip,
     ArrowLeft: decrement,
     ArrowRight: increment,
+  },
+  reset = () => {
+    S.freeze(() => {
+      searchTerm('')
+      flipped(false)
+    })
   }
-
-  S.on(imageIndex, () => searchTerm(''))
-  S.on(showAllMode, () => searchTerm(''))
+  S.on(imageIndex, reset)
+  S.on(showAllMode, reset)
 
   document.body.addEventListener('keydown', ({key}) => {
     if (document.activeElement === searchInput) {
