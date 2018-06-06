@@ -92,4 +92,5 @@
   width: 100vw;
   max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */
   height: 100%;
+  margin: 0 auto;
 }
