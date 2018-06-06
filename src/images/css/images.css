@@ -10,6 +10,7 @@
   width: 100%;
   justify-content: center;
   flex: 0 0 auto;
+  flex-wrap: wrap;
 }
 
 .controls-button {
