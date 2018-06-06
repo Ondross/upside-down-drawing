@@ -8,6 +8,8 @@
 .controls-header {
   font-size: 24px;
   height: 40px;
+  font-weight: bold;
+  margin: 10px 0 6px;
 }
 
 .controls-container {
@@ -33,23 +35,27 @@
   margin: 5px;
   height: 40px;
   font-size: 21px;
+  font-family: IBM Plex Sans;
   opacity: .8;
 }
 
 .image-wrapper {
   display: flex;
   flex: 1 1 auto;
-  padding: 10px 0 2px;
+  padding: 10px 0 5px;
   justify-content: center;
 }
 .image-container {
   max-height: 100%;
   position: relative;
+  width: 100%;
+  text-align: center
 }
 .drawing {
   height: 100%;
   max-width: 100%;
   object-fit: contain;
+  border-radius: 4px;
 }
 
 .thumbnails {
@@ -78,9 +84,9 @@
 
 .attribution {
   font-size: 10px;
-  position: relative;
-  margin-top: -24px;
-  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 2px;
   letter-spacing: 1.2px;
 }
 .attribution a {
@@ -93,4 +99,10 @@
   max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */
   height: 100%;
   margin: 0 auto;
+}
+
+@media (max-device-width: 320px) {
+  .search-input {
+    width: 162px;
+  }
 }

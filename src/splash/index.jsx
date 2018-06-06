@@ -19,7 +19,7 @@ export default (next) => {
         This site is a collection of fun upside images for drawing. To get started, tape some paper to your desk, get a pencil, and and make sure you're undisturbed for 30 minutes.
       </div>
       <div className="paragraph">
-        As you draw, pay close attention to the shape of each line, not what it represents. Don't flip the drawings over until you're finished—I promise, you'll be surprised at the quality of your results!
+        As you draw, pay attention to the shape of each line, not what it represents. Don't flip anything over until you're finished, and you'll be surprised at the quality of your results!
       </div>
       <div className="button" onClick={next}>
         Start Drawing

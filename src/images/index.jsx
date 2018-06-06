@@ -59,7 +59,7 @@ export default () => {
     </div>,
   TopBar = () => {
     if (showAllMode()) {
-      return <div className="controls-container app-header">
+      return <div className="controls-container controls-header">
         Upside Down Drawing
       </div>
     } else {
@@ -83,7 +83,7 @@ export default () => {
     </div>,
   SearchIFrame = () =>
   // Scrolling set to no because there is a big when you click in image in the iframe after scrolling. We force you to click images and cycle through.
-  <iframe scrolling="no" fn={(el) => {el.className = flipped() ? "search-frame upside-down" : "search-frame"}} src={`https://www.bing.com/images/search?q=${searchTerm()}&go=Search&qs=ds&form=QBILPG`}>
+  <iframe scrolling="no" fn={(el) => {el.className = flipped() ? "search-frame" : "search-frame upside-down"}} src={`https://www.bing.com/images/search?q=${searchTerm()}&go=Search&qs=ds&form=QBILPG`}>
   </iframe>,
   ImageDisplay = () => {
     if (searchTerm()) {
