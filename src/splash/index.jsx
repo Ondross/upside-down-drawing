@@ -13,13 +13,10 @@ export default (next) => {
         Upside Down Drawing
       </div>
       <div className="paragraph">
-        Upside down drawing is a trick for seeing the world as shapes rather than symbols. Normally when you draw, your left brain insists that everything is a symbol, so you draw what things <i>ought</i> to look like. By putting images in an unfamiliar perspective, you silence that voice and observe what things truly look like.
+        Upside down drawing is a trick for seeing the world as shapes rather than symbols. The part of our brain that categorizes everything is bossy and hard to ignore, but it's not useful for drawing. Viewing images from an unfamiliar perspective disengages the logical side of your brain and allows us to observe what things actually <i>look like</i>.
       </div>
       <div className="paragraph">
-        Finding good source images isn't super easy, so this site provides some fun ones to start with.
-      </div>
-      <div className="paragraph">
-        All you need is pencil and some paper taped to your desk. Make sure you're undisturbed for 30 minutes.
+        This site is a collection of fun upside images for drawing. To get started, tape some paper to your desk, get a pencil, and and make sure you're undisturbed for 30 minutes.
       </div>
       <div className="paragraph">
         As you draw, pay close attention to the shape of each line, not what it represents. Don't flip the drawings over until you're finished—I promise, you'll be surprised at the quality of your results!
@@ -28,7 +25,7 @@ export default (next) => {
         Start Drawing
       </div>
       <div className="footer">
-        Read more about upside down drawing in Chapter 4 of <a href="http://drawright.com/">Drawing on the Right Side of the Brain</a> by Betty Edwards.
+        Read more about upside down drawing in Chapter 4 of <a target="_blank" href="http://drawright.com/theory/">Drawing on the Right Side of the Brain</a> by Betty Edwards.
       </div>
     </div>
 
