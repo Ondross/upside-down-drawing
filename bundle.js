@@ -11520,7 +11520,6 @@ exports.default = () => {
       next = indices[indices.length - 1];
     }
     imageIndex(next);
-    searchTerm('');
   },
         flip = () => {
     flipped(!flipped());
@@ -11532,16 +11531,15 @@ exports.default = () => {
       next = 0;
     }
     imageIndex(next);
-    searchTerm('');
   },
         enableShowAll = () => {
-    searchTerm('');
     showAllMode(true);
   },
         setImage = idx => {
     const shuffledIndex = indices.indexOf(idx);
     imageIndex(shuffledIndex);
     showAllMode(false);
+    flipped(false);
   },
         searchInput = function () {
     var __;
@@ -11570,7 +11568,7 @@ exports.default = () => {
     __div5.onclick = enableShowAll;
     __div5.textContent = "All";
     Surplus.S(function () {
-      __div2_img1.className = `${flipped() ? "" : "flipped"}`;
+      __div2_img1.className = flipped() ? "" : "flipped";
       __div2_img1.src = "/static/icons/flip.svg";
     });
     Surplus.S(function (__range) {
@@ -11599,7 +11597,7 @@ exports.default = () => {
     Surplus.S(function () {
       __div1_div2_a1.target = "blank";
       __div1_div2_a1.href = _imageList.imageList[indices[imageIndex()]].attribution;
-      __div1_div2_a1.textContent = "Attribution";
+      __div1_div2_a1.textContent = "Original Source";
     });
     return __;
   }(),
@@ -11628,8 +11626,12 @@ exports.default = () => {
     __ = Surplus.createElement("iframe", null, null);
     Surplus.S(function () {
       __.scrolling = "no";
-      __.className = `search-frame ${flipped() ? "" : "upside-down"}`;
       __.src = `https://www.bing.com/images/search?q=${searchTerm()}&go=Search&qs=ds&form=QBILPG`;
+    });
+    Surplus.S(function (__state) {
+      return (el => {
+        el.className = flipped() ? "search-frame upside-down" : "search-frame";
+      })(__, __state);
     });
     return __;
   }(),
@@ -11643,18 +11645,21 @@ exports.default = () => {
     }
   },
         keyCodeFunctions = {
-    38: flip,
-    40: flip,
-    37: decrement,
-    39: increment
+    ArrowUp: flip,
+    ArrowDown: flip,
+    ArrowLeft: decrement,
+    ArrowRight: increment
   };
 
-  document.body.addEventListener('keydown', ({ keyCode }) => {
+  _sJs2.default.on(imageIndex, () => searchTerm(''));
+  _sJs2.default.on(showAllMode, () => searchTerm(''));
+
+  document.body.addEventListener('keydown', ({ key }) => {
     if (document.activeElement === searchInput) {
       return;
     }
-    if (keyCodeFunctions[keyCode]) {
-      keyCodeFunctions[keyCode]();
+    if (keyCodeFunctions[key]) {
+      keyCodeFunctions[key]();
       return;
     }
     searchInput.focus();
@@ -11717,7 +11722,7 @@ exports = module.exports = __webpack_require__(92)(false);
 
 
 // module
-exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n  flex-wrap: wrap;\n}\n\n.controls-button {\n  min-width: 40px;\n  height: 40px;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 20px;\n  justify-content: center;\n  background: white;\n}\n.image-container {\n  max-height: 100%;\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n}\n.thumbnail {\n  object-fit: cover;\n  width: 128px;\n  height: 128px;\n  border-radius: 6px;\n  margin: 3px;\n  cursor: pointer;\n  border: solid 1px #efefef;\n  opacity: .8;\n}\n.thumbnail:hover {\n  opacity: 1;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 12px;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n  flex-wrap: wrap;\n}\n\n.controls-button {\n  min-width: 40px;\n  height: 40px;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 20px;\n  justify-content: center;\n  background: white;\n}\n.image-container {\n  max-height: 100%;\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n}\n.thumbnail {\n  object-fit: cover;\n  width: 128px;\n  height: 128px;\n  border-radius: 6px;\n  margin: 3px;\n  cursor: pointer;\n  border: solid 1px #efefef;\n  opacity: .8;\n}\n.thumbnail:hover {\n  opacity: 1;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 10px;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -11853,28 +11858,30 @@ __webpack_require__(345);
 exports.default = next => {
 
   const root = function () {
-    var __, __div1, __div2, __div2_i2, __div3, __div3_a2, __div4, __div5, __div6;
+    var __, __div1, __div2, __div2_i2, __div3, __div4, __div5, __div6, __div7, __div7_a2;
     __ = Surplus.createElement("div", 'splash-container', null);
     __div1 = Surplus.createElement("div", "app-header", __);
     __div1.textContent = "Upside Down Drawing";
     __div2 = Surplus.createElement("div", "paragraph", __);
-    Surplus.createTextNode("Upside down drawing is a method of tricking our brain into seeing the world as shapes rather than symbols. By looking at objects in an unfamiliar perspective, we trick our left-brain into ignoring what things ", __div2);
+    Surplus.createTextNode("Upside down drawing is a trick for seeing the world as shapes rather than symbols. Normally when you draw, your left brain insists that everything is a symbol, so you draw what things ", __div2);
     __div2_i2 = Surplus.createElement("i", null, __div2);
-    __div2_i2.textContent = "should";
-    Surplus.createTextNode(" look like. Thanks to this mental shift, we can focus on shapes and relationships and see things more accurately.", __div2);
+    __div2_i2.textContent = "ought";
+    Surplus.createTextNode(" to look like. By putting images in an unfamiliar perspective, you silence that voice and observe what things truly look like.", __div2);
     __div3 = Surplus.createElement("div", "paragraph", __);
-    Surplus.createTextNode("Read more in Chapter 4 of ", __div3);
-    __div3_a2 = Surplus.createElement("a", null, __div3);
-    __div3_a2.href = "http://drawright.com/";
-    __div3_a2.textContent = "Drawing on the Right Side of the Brain";
-    Surplus.createTextNode(" by Betty Edwards.", __div3);
+    __div3.textContent = "Finding good source images isn't super easy, so this site provides some fun ones to start with.";
     __div4 = Surplus.createElement("div", "paragraph", __);
-    __div4.textContent = "Before you start, turn on some instrumental music and make sure you won't be disturbed for at least 30 minutes.";
+    __div4.textContent = "All you need is pencil and some paper taped to your desk. Make sure you're undisturbed for 30 minutes.";
     __div5 = Surplus.createElement("div", "paragraph", __);
-    __div5.textContent = "Pay attention to the shape of each line, not what it represents. Try not to look at the drawings right side up until you're finished. I promise, you'll be surprised at the quality of your results!";
+    __div5.textContent = "As you draw, pay close attention to the shape of each line, not what it represents. Don't flip the drawings over until you're finished—I promise, you'll be surprised at the quality of your results!";
     __div6 = Surplus.createElement("div", "button", __);
     __div6.onclick = next;
-    __div6.textContent = "Go Upside Down";
+    __div6.textContent = "Start Drawing";
+    __div7 = Surplus.createElement("div", "footer", __);
+    Surplus.createTextNode("Read more about upside down drawing in Chapter 4 of ", __div7);
+    __div7_a2 = Surplus.createElement("a", null, __div7);
+    __div7_a2.href = "http://drawright.com/";
+    __div7_a2.textContent = "Drawing on the Right Side of the Brain";
+    Surplus.createTextNode(" by Betty Edwards.", __div7);
     return __;
   }();
 
@@ -11921,7 +11928,7 @@ exports = module.exports = __webpack_require__(92)(false);
 
 
 // module
-exports.push([module.i, ".app-header {\n  font-size: 24px;\n  margin-top: 20px;\n}\n\n.splash-container {\n  max-width: 600px;\n}\n\n.paragraph {\n  margin: 10px 0 12px;\n}\n", ""]);
+exports.push([module.i, ".app-header {\n  font-size: 24px;\n  margin: 12px 0;\n}\n\n.splash-container {\n  max-width: 600px;\n}\n\n.paragraph {\n  margin: 0 0 12px;\n}\n\n.footer {\n  font-size: 12px;\n  margin-top: 12px;\n}\n", ""]);
 
 // exports
 
@@ -11966,7 +11973,7 @@ exports = module.exports = __webpack_require__(92)(false);
 
 
 // module
-exports.push([module.i, "body {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  max-width: 100%;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  font-size: 21px;\n  font-weight: bolder;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  padding: 0 3px;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  max-width: 100%;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  font-size: 21px;\n  font-weight: bolder;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
 
 // exports
 
