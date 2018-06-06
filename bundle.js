@@ -13293,12 +13293,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _Analytics2.default)();
-
 __webpack_require__(363);
 
-const showSplash = _sJs2.default.data(true);
+(0, _Analytics2.default)();
 
+const showSplash = _sJs2.default.data(true);
 const next = () => {
   showSplash(false);
 };
@@ -14108,7 +14107,6 @@ exports.default = () => {
         searchTerm = _sJs2.default.data(''),
         decrement = () => {
     let next = imageIndex() - 1;
-    flipped(false);
     if (next < 0) {
       next = indices[indices.length - 1];
     }
@@ -14119,7 +14117,6 @@ exports.default = () => {
   },
         increment = () => {
     let next = imageIndex() + 1;
-    flipped(false);
     if (next >= indices.length) {
       next = 0;
     }
@@ -14130,9 +14127,10 @@ exports.default = () => {
   },
         setImage = idx => {
     const shuffledIndex = indices.indexOf(idx);
-    imageIndex(shuffledIndex);
-    showAllMode(false);
-    flipped(false);
+    _sJs2.default.freeze(() => {
+      imageIndex(shuffledIndex);
+      showAllMode(false);
+    });
   },
         searchInput = function () {
     var __;
@@ -14175,7 +14173,12 @@ exports.default = () => {
   }(),
         TopBar = () => {
     if (showAllMode()) {
-      return Surplus.createElement('div', null, null);
+      return function () {
+        var __;
+        __ = Surplus.createElement("div", "controls-container controls-header", null);
+        __.textContent = "Upside Down Drawing";
+        return __;
+      }();
     } else {
       return ImageControls({});
     }
@@ -14194,13 +14197,13 @@ exports.default = () => {
     Surplus.S(function () {
       __div1_div2_a1.target = "blank";
       __div1_div2_a1.href = _imageList.imageList[indices[imageIndex()]].attribution;
-      __div1_div2_a1.textContent = "Original Source";
+      __div1_div2_a1.textContent = "Original";
     });
     return __;
   }(),
         AllImages = () => function () {
     var __;
-    __ = Surplus.createElement("div", null, null);
+    __ = Surplus.createElement("div", "thumbnails", null);
     Surplus.S(function (__current) {
       return Surplus.content(__, _imageList.imageList.map((image, idx) => function () {
         var __;
@@ -14227,7 +14230,7 @@ exports.default = () => {
     });
     Surplus.S(function (__state) {
       return (el => {
-        el.className = flipped() ? "search-frame upside-down" : "search-frame";
+        el.className = flipped() ? "search-frame" : "search-frame upside-down";
       })(__, __state);
     });
     return __;
@@ -14246,10 +14249,15 @@ exports.default = () => {
     ArrowDown: flip,
     ArrowLeft: decrement,
     ArrowRight: increment
+  },
+        reset = () => {
+    _sJs2.default.freeze(() => {
+      searchTerm('');
+      flipped(false);
+    });
   };
-
-  _sJs2.default.on(imageIndex, () => searchTerm(''));
-  _sJs2.default.on(showAllMode, () => searchTerm(''));
+  _sJs2.default.on(imageIndex, reset);
+  _sJs2.default.on(showAllMode, reset);
 
   document.body.addEventListener('keydown', ({ key }) => {
     if (document.activeElement === searchInput) {
@@ -14400,7 +14408,7 @@ exports = module.exports = __webpack_require__(93)(false);
 
 
 // module
-exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n  flex-wrap: wrap;\n}\n\n.controls-button {\n  min-width: 40px;\n  height: 40px;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px 8px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 20px;\n  justify-content: center;\n  background: white;\n}\n.image-container {\n  max-height: 100%;\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n}\n.thumbnail {\n  object-fit: cover;\n  width: 128px;\n  height: 128px;\n  border-radius: 6px;\n  margin: 3px;\n  cursor: pointer;\n  border: solid 1px #efefef;\n  opacity: .8;\n  max-width: calc(33% - 7px);\n}\n.thumbnail:hover {\n  opacity: 1;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 10px;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-header {\n  font-size: 24px;\n  height: 40px;\n  font-weight: bold;\n  margin: 10px 0 6px;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n  flex-wrap: wrap;\n}\n\n.controls-button {\n  min-width: 40px;\n  height: 40px;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 4px;\n  padding: 5px 8px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  font-family: IBM Plex Sans;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 0 5px;\n  justify-content: center;\n}\n.image-container {\n  max-height: 100%;\n  position: relative;\n  width: 100%;\n  text-align: center\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n  border-radius: 4px;\n}\n\n.thumbnails {\n  padding: 10px 0;\n}\n.thumbnail {\n  object-fit: cover;\n  width: 128px;\n  height: 128px;\n  border-radius: 4px;\n  margin: 3px;\n  cursor: pointer;\n  border: solid 1px #efefef;\n  opacity: .8;\n  max-width: calc(33% - 7px);\n}\n.thumbnail:hover {\n  opacity: 1;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 10px;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2px;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n  margin: 0 auto;\n}\n\n@media (max-device-width: 320px) {\n  .search-input {\n    width: 162px;\n  }\n}\n", ""]);
 
 // exports
 
@@ -14548,7 +14556,7 @@ exports.default = next => {
     __div3 = Surplus.createElement("div", "paragraph", __);
     __div3.textContent = "This site is a collection of fun upside images for drawing. To get started, tape some paper to your desk, get a pencil, and and make sure you're undisturbed for 30 minutes.";
     __div4 = Surplus.createElement("div", "paragraph", __);
-    __div4.textContent = "As you draw, pay close attention to the shape of each line, not what it represents. Don't flip the drawings over until you're finished—I promise, you'll be surprised at the quality of your results!";
+    __div4.textContent = "As you draw, pay attention to the shape of each line, not what it represents. Don't flip anything over until you're finished, and you'll be surprised at the quality of your results!";
     __div5 = Surplus.createElement("div", "button", __);
     __div5.onclick = next;
     __div5.textContent = "Start Drawing";
@@ -14605,7 +14613,7 @@ exports = module.exports = __webpack_require__(93)(false);
 
 
 // module
-exports.push([module.i, ".app-header {\n  font-size: 24px;\n  margin: 8px 0 6px;\n}\n\n.splash-container {\n  max-width: 600px;\n}\n\n.paragraph {\n  margin: 0 0 12px;\n}\n\n.footer {\n  font-size: 12px;\n  margin-top: 12px;\n}\n\n@media (max-device-width: 400px) {\n  .app-header {\n    margin-top: 2px;\n  }\n}\n", ""]);
+exports.push([module.i, ".app-header {\n  font-size: 24px;\n  margin: 8px 0 6px;\n  font-weight: bold;\n}\n\n.splash-container {\n  max-width: 600px;\n}\n\n.paragraph {\n  margin: 0 0 12px;\n}\n\n.footer {\n  font-size: 12px;\n  margin-top: 12px;\n}\n\n@media (max-device-width: 400px) {\n  .app-header {\n    margin-top: 2px;\n  }\n}\n", ""]);
 
 // exports
 
@@ -32939,7 +32947,7 @@ exports = module.exports = __webpack_require__(93)(false);
 
 
 // module
-exports.push([module.i, "body {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  padding: 0 3px;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  max-width: 100%;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 21px;\n  font-weight: bolder;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  padding: 0 3px;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 4px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 21px;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
 
 // exports
 
