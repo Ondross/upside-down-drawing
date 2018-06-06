@@ -55,3 +55,20 @@
   transform: scaleY(-1);
 }
 
+.attribution {
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 2px;
+  letter-spacing: 1.2;
+}
+.attribution a {
+  color: #373737;
+  letter-spacing: .5px;
+}
+
+.search-frame {
+  width: 100vw;
+  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */
+  height: 100%;
+}
