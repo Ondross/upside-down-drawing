@@ -10704,7 +10704,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 __webpack_require__(347);
 
-const showSplash = _sJs2.default.data(false);
+const showSplash = _sJs2.default.data(true);
 
 const next = () => {
   showSplash(false);
@@ -11511,6 +11511,8 @@ exports.default = () => {
         indices = shuffle([...Array(_imageList.imageList.length)].map((_, i) => i)),
         imageIndex = _sJs2.default.data(0),
         flipped = _sJs2.default.data(false),
+        showAllMode = _sJs2.default.data(false),
+        searchTerm = _sJs2.default.data(''),
         decrement = () => {
     let next = imageIndex() - 1;
     flipped(false);
@@ -11518,6 +11520,7 @@ exports.default = () => {
       next = indices[indices.length - 1];
     }
     imageIndex(next);
+    searchTerm('');
   },
         flip = () => {
     flipped(!flipped());
@@ -11529,8 +11532,17 @@ exports.default = () => {
       next = 0;
     }
     imageIndex(next);
+    searchTerm('');
   },
-        searchTerm = _sJs2.default.data(''),
+        enableShowAll = () => {
+    searchTerm('');
+    showAllMode(true);
+  },
+        setImage = idx => {
+    const shuffledIndex = indices.indexOf(idx);
+    imageIndex(shuffledIndex);
+    showAllMode(false);
+  },
         searchInput = function () {
     var __;
     __ = Surplus.createElement("input", "search-input", null);
@@ -11542,18 +11554,21 @@ exports.default = () => {
     return __;
   }(),
         ImageControls = () => function () {
-    var __, __div1, __div2, __div2_img1, __div3, __insert4;
+    var __, __div1, __div2, __div2_img1, __div3, __insert4, __div5;
     __ = Surplus.createElement("div", "controls-container", null);
-    __div1 = Surplus.createElement("div", "controls-button", __);
+    __div1 = Surplus.createElement("div", "button controls-button", __);
     __div1.onclick = decrement;
     __div1.textContent = "<";
-    __div2 = Surplus.createElement("div", "controls-button", __);
+    __div2 = Surplus.createElement("div", "button controls-button", __);
     __div2.onclick = flip;
     __div2_img1 = Surplus.createElement("img", null, __div2);
-    __div3 = Surplus.createElement("div", "controls-button", __);
+    __div3 = Surplus.createElement("div", "button controls-button", __);
     __div3.onclick = increment;
     __div3.textContent = ">";
     __insert4 = Surplus.createTextNode('', __);
+    __div5 = Surplus.createElement("div", "button controls-button", __);
+    __div5.onclick = enableShowAll;
+    __div5.textContent = "All";
     Surplus.S(function () {
       __div2_img1.className = `${flipped() ? "" : "flipped"}`;
       __div2_img1.src = "/static/icons/flip.svg";
@@ -11563,6 +11578,13 @@ exports.default = () => {
     }, { start: __insert4, end: __insert4 });
     return __;
   }(),
+        TopBar = () => {
+    if (showAllMode()) {
+      return Surplus.createElement('div', null, null);
+    } else {
+      return ImageControls({});
+    }
+  },
         ShuffledImage = () => function () {
     var __, __div1, __div1_img1, __div1_div2, __div1_div2_a1;
     __ = Surplus.createElement("div", "image-wrapper", null);
@@ -11575,9 +11597,28 @@ exports.default = () => {
       __div1_img1.src = _imageList.imageList[indices[imageIndex()]].src;
     });
     Surplus.S(function () {
+      __div1_div2_a1.target = "blank";
       __div1_div2_a1.href = _imageList.imageList[indices[imageIndex()]].attribution;
       __div1_div2_a1.textContent = "Attribution";
     });
+    return __;
+  }(),
+        AllImages = () => function () {
+    var __;
+    __ = Surplus.createElement("div", null, null);
+    Surplus.S(function (__current) {
+      return Surplus.content(__, _imageList.imageList.map((image, idx) => function () {
+        var __;
+        __ = Surplus.createElement("img", "thumbnail", null);
+        Surplus.S(function () {
+          __.onclick = () => {
+            setImage(idx);
+          };
+          __.src = image.src;
+        });
+        return __;
+      }()), __current);
+    }, '');
     return __;
   }(),
         SearchIFrame = () =>
@@ -11595,6 +11636,8 @@ exports.default = () => {
         ImageDisplay = () => {
     if (searchTerm()) {
       return SearchIFrame({});
+    } else if (showAllMode()) {
+      return AllImages({});
     } else {
       return ShuffledImage({});
     }
@@ -11623,7 +11666,7 @@ exports.default = () => {
     __insert1 = Surplus.createTextNode('', __);
     __insert2 = Surplus.createTextNode('', __);
     Surplus.S(function (__range) {
-      return Surplus.insert(__range, ImageControls({}));
+      return Surplus.insert(__range, TopBar({}));
     }, { start: __insert1, end: __insert1 });
     Surplus.S(function (__range) {
       return Surplus.insert(__range, ImageDisplay({}));
@@ -11674,7 +11717,7 @@ exports = module.exports = __webpack_require__(92)(false);
 
 
 // module
-exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n}\n.controls-button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  width: 40px;\n  height: 40px;\n  display: flex;\n  justify-content: center;\n  font-size: 21px;\n  font-weight: bolder;\n  opacity: .8;\n}\n.controls-button:hover {\n  background: #efefef;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 20px;\n  justify-content: center;\n  background: white;\n}\n.image-container {\n  max-height: 100%;\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 12px;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n}\n\n.controls-button {\n  min-width: 40px;\n  height: 40px;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 20px;\n  justify-content: center;\n  background: white;\n}\n.image-container {\n  max-height: 100%;\n  width: 100%;\n  text-align: center;\n  position: relative;\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n}\n.thumbnail {\n  object-fit: cover;\n  width: 128px;\n  height: 128px;\n  border-radius: 6px;\n  margin: 3px;\n  cursor: pointer;\n  border: solid 1px #efefef;\n  opacity: .8;\n}\n.thumbnail:hover {\n  opacity: 1;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 12px;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -11809,28 +11852,27 @@ __webpack_require__(345);
 
 exports.default = next => {
 
-  const showSplash = _sJs2.default.data(true);
-
-  setTimeout(() => {
-    showSplash(false);
-  }, 1000);
-
   const root = function () {
-    var __, __div1, __div2, __div3, __div4, __div4_a2;
+    var __, __div1, __div2, __div2_i2, __div3, __div3_a2, __div4, __div5;
     __ = Surplus.createElement("div", 'splash-container', null);
     __div1 = Surplus.createElement("div", "app-header", __);
     __div1.textContent = "Upside Down Drawing";
-    __div2 = Surplus.createElement("div", "button", __);
-    __div2.onclick = next;
-    __div2.textContent = "Start Drawing";
+    __div2 = Surplus.createElement("div", "paragraph", __);
+    Surplus.createTextNode("Upside down drawing is a method of tricking our brain into seeing the world as shapes rather than symbols. By looking at objects in an unfamiliar perspective, we trick our left-brain into ignoring what things ", __div2);
+    __div2_i2 = Surplus.createElement("i", null, __div2);
+    __div2_i2.textContent = "should";
+    Surplus.createTextNode(" look like. This mental shift hels us focus on shapes, angles, and relationships.", __div2);
     __div3 = Surplus.createElement("div", "paragraph", __);
-    __div3.textContent = "Our goal is to see the world in shapes, rather than symbols. Upside down drawing helps trigger that mental shift.";
+    Surplus.createTextNode("Read more in Chapter 4 of ", __div3);
+    __div3_a2 = Surplus.createElement("a", null, __div3);
+    __div3_a2.href = "http://drawright.com/";
+    __div3_a2.textContent = "Drawing on the Right Side of the Brain";
+    Surplus.createTextNode(" by Betty Edwards.", __div3);
     __div4 = Surplus.createElement("div", "paragraph", __);
-    Surplus.createTextNode("This is inspired by Chapter 4 of ", __div4);
-    __div4_a2 = Surplus.createElement("a", null, __div4);
-    __div4_a2.href = "http://drawright.com/";
-    __div4_a2.textContent = "Drawing on the Right Side of the Brain";
-    Surplus.createTextNode(" by Betty Edwards.", __div4);
+    __div4.textContent = "Before you start, turn on some instrumental music and make sure you won't be disturbed for at least 30 minutes. Try not to look at the drawings right side up until you're finished. I promise, you'll be surprised at the quality of your results!";
+    __div5 = Surplus.createElement("div", "button", __);
+    __div5.onclick = next;
+    __div5.textContent = "Go Upside Down";
     return __;
   }();
 
@@ -11922,7 +11964,7 @@ exports = module.exports = __webpack_require__(92)(false);
 
 
 // module
-exports.push([module.i, "body {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  line-height: 1.8;\n}\n\n.app-container {\n  max-width: 100%;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  font-size: 28px;\n  font-weight: bolder;\n  opacity: .8;\n}\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  max-width: 100%;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 6px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  font-size: 21px;\n  font-weight: bolder;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
 
 // exports
 
