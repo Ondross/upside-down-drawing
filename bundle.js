@@ -14408,7 +14408,7 @@ exports = module.exports = __webpack_require__(93)(false);
 
 
 // module
-exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-header {\n  font-size: 24px;\n  height: 40px;\n  font-weight: bold;\n  margin: 10px 0 6px;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n  flex-wrap: wrap;\n}\n\n.controls-button {\n  min-width: 40px;\n  height: 40px;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 4px;\n  padding: 5px 8px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  font-family: IBM Plex Sans;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 0 5px;\n  justify-content: center;\n}\n.image-container {\n  max-height: 100%;\n  position: relative;\n  width: 100%;\n  text-align: center\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n  border-radius: 4px;\n}\n\n.thumbnails {\n  padding: 10px 0;\n}\n.thumbnail {\n  object-fit: cover;\n  width: 128px;\n  height: 128px;\n  border-radius: 4px;\n  margin: 3px;\n  cursor: pointer;\n  border: solid 1px #efefef;\n  opacity: .8;\n  max-width: calc(33% - 7px);\n}\n.thumbnail:hover {\n  opacity: 1;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 10px;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2px;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n  margin: 0 auto;\n}\n\n@media (max-device-width: 320px) {\n  .search-input {\n    width: 162px;\n  }\n}\n", ""]);
+exports.push([module.i, ".drawing-container {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  flex: 1 1 auto;\n}\n\n.controls-header {\n  font-size: 24px;\n  font-size: 2.4rem;\n  height: 40px;\n  font-weight: bold;\n  margin: 10px 0 6px;\n}\n\n.controls-container {\n  display: flex;\n  width: 100%;\n  justify-content: center;\n  flex: 0 0 auto;\n  flex-wrap: wrap;\n}\n\n.controls-button {\n  min-width: 40px;\n  height: 40px;\n}\n.controls-button img {\n  width: 40px;\n}\n\n.search-input {\n  border: 1px solid #efefef;\n  border-radius: 4px;\n  padding: 5px 8px;\n  margin: 5px;\n  height: 40px;\n  font-size: 21px;\n  font-size: 2.1rem;\n  font-family: IBM Plex Sans;\n  opacity: .8;\n}\n\n.image-wrapper {\n  display: flex;\n  flex: 1 1 auto;\n  padding: 10px 0 5px;\n  justify-content: center;\n}\n.image-container {\n  max-height: 100%;\n  position: relative;\n  width: 100%;\n  text-align: center\n}\n.drawing {\n  height: 100%;\n  max-width: 100%;\n  object-fit: contain;\n  border-radius: 4px;\n}\n\n.thumbnails {\n  padding: 10px 0;\n}\n.thumbnail {\n  object-fit: cover;\n  width: 128px;\n  height: 128px;\n  border-radius: 4px;\n  margin: 3px;\n  cursor: pointer;\n  border: solid 1px #efefef;\n  opacity: .8;\n  max-width: calc(33% - 7px);\n}\n.thumbnail:hover {\n  opacity: 1;\n}\n.upside-down {\n  transform: rotateZ(180deg);\n}\n.flipped {\n  transform: scaleY(-1);\n}\n\n.attribution {\n  font-size: 10px;\n  font-size: 1.0rem;\n  position: absolute;\n  bottom: 0;\n  left: 2px;\n  letter-spacing: 1.2px;\n}\n.attribution a {\n  color: #373737;\n  letter-spacing: .5px;\n}\n\n.search-frame {\n  width: 100vw;\n  max-width: 1023px; /* Fun: this hits a Bing breakpoint that hides the stupid insight view */\n  height: 100%;\n  margin: 0 auto;\n}\n\n@media (max-device-width: 320px) {\n  .search-input {\n    width: 162px;\n  }\n}\n\n@media (max-device-width: 414px) {\n  .search-input {\n    width: 130px;\n  }\n}\n\n@media (max-device-width: 731px)\n  and (orientation: landscape) {\n  .search-input {\n    width: 160px;\n  }\n  .drawing-container {\n    flex-direction: row;\n  }\n  .controls-container {\n    flex: 0 1 190px;\n    justify-content: flex-start;\n    align-self: flex-start;\n  }\n  .controls-header {\n    margin: 10px;\n  }\n  .attribution {\n    left: auto;\n    right: 2px;\n  }\n}\n", ""]);
 
 // exports
 
@@ -14544,29 +14544,28 @@ __webpack_require__(350);
 exports.default = next => {
 
   const root = function () {
-    var __, __div1, __div2, __div2_i2, __div3, __div4, __div5, __div6, __div6_a2;
+    var __, __div1, __div2, __div3, __div4, __div5, __div6, __div7, __div7_a2;
     __ = Surplus.createElement("div", 'splash-container', null);
     __div1 = Surplus.createElement("div", "app-header", __);
     __div1.textContent = "Upside Down Drawing";
-    __div2 = Surplus.createElement("div", "paragraph", __);
-    Surplus.createTextNode("Upside down drawing is a trick for seeing the world as shapes rather than symbols. The part of your brain that categorizes everything is hard to ignore and not useful for drawing. Viewing images from an unfamiliar perspective disengages that part of your brain and allows you to observe what things actually ", __div2);
-    __div2_i2 = Surplus.createElement("i", null, __div2);
-    __div2_i2.textContent = "look like";
-    Surplus.createTextNode(".", __div2);
+    __div2 = Surplus.createElement("div", "app-sub-header", __);
+    __div2.textContent = "See in shapes, not symbols";
     __div3 = Surplus.createElement("div", "paragraph", __);
-    __div3.textContent = "This site is a collection of fun upside images for drawing. To get started, tape some paper to your desk, get a pencil, and and make sure you're undisturbed for 30 minutes.";
+    __div3.textContent = "Upside down drawing is a trick for perceiving objects more accurately. By using an unfamiliar perspective, we disengage our logical left-brains in favor of our more observant, open-minded right-brains. When we forget labels, we see shapes and forms, and it becomes much easier to draw.";
     __div4 = Surplus.createElement("div", "paragraph", __);
-    __div4.textContent = "As you draw, pay attention to the shape of each line, not what it represents. Don't flip anything over until you're finished, and you'll be surprised at the quality of your results!";
-    __div5 = Surplus.createElement("div", "button", __);
-    __div5.onclick = next;
-    __div5.textContent = "Start Drawing";
-    __div6 = Surplus.createElement("div", "footer", __);
-    Surplus.createTextNode("Read more about upside down drawing in Chapter 4 of ", __div6);
-    __div6_a2 = Surplus.createElement("a", null, __div6);
-    __div6_a2.target = "_blank";
-    __div6_a2.href = "http://drawright.com/theory/";
-    __div6_a2.textContent = "Drawing on the Right Side of the Brain";
-    Surplus.createTextNode(" by Betty Edwards.", __div6);
+    __div4.textContent = "This site is a collection of fun upside images for drawing. To get started, tape some paper to your desk, get a pencil, and make sure you're not disturbed for 30 minutes.";
+    __div5 = Surplus.createElement("div", "paragraph", __);
+    __div5.textContent = "As you draw, pay attention to the shape of each line, rather than what it represents. Don't flip anything over until you're finished, and you'll be surprised at the quality of your results!";
+    __div6 = Surplus.createElement("div", "button", __);
+    __div6.onclick = next;
+    __div6.textContent = "Start Drawing";
+    __div7 = Surplus.createElement("div", "footer", __);
+    Surplus.createTextNode("Read more about upside down drawing in Chapter 4 of ", __div7);
+    __div7_a2 = Surplus.createElement("a", null, __div7);
+    __div7_a2.target = "_blank";
+    __div7_a2.href = "http://drawright.com/theory/";
+    __div7_a2.textContent = "Drawing on the Right Side of the Brain";
+    Surplus.createTextNode(" by Betty Edwards.", __div7);
     return __;
   }();
 
@@ -14613,7 +14612,7 @@ exports = module.exports = __webpack_require__(93)(false);
 
 
 // module
-exports.push([module.i, ".app-header {\n  font-size: 24px;\n  margin: 8px 0 6px;\n  font-weight: bold;\n}\n\n.splash-container {\n  max-width: 600px;\n}\n\n.paragraph {\n  margin: 0 0 12px;\n}\n\n.footer {\n  font-size: 12px;\n  margin-top: 12px;\n}\n\n@media (max-device-width: 400px) {\n  .app-header {\n    margin-top: 2px;\n  }\n}\n", ""]);
+exports.push([module.i, ".app-header {\n  font-size: 24px;\n  font-size: 2.4rem;\n  margin-top: 8px;\n  font-weight: bold;\n  display: flex;\n  line-height: 1.5;\n}\n.app-sub-header {\n  opacity: .8;\n  font-size: 21px;\n  font-size: 2.1rem;\n}\n\n.splash-container {\n  max-width: 600px;\n}\n\n.paragraph {\n  margin: 0 0 12px;\n}\n\n.footer {\n  font-size: 12px;\n  margin-top: 12px;\n}\n\n@media (max-device-width: 400px) {\n  .app-header {\n    margin-top: 2px;\n  }\n}\n", ""]);
 
 // exports
 
@@ -32947,7 +32946,7 @@ exports = module.exports = __webpack_require__(93)(false);
 
 
 // module
-exports.push([module.i, "body {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  padding: 0 3px;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 4px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 21px;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
+exports.push([module.i, "@viewport {\n  width: device-width;\n}\nhtml {\n  font-size: 62.5%;\n  width:100%;\n}\n\nbody {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  padding: 0 3px;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  font-size: 1.6rem;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 4px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 21px;\n  font-size: 2.1rem;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
 
 // exports
 
