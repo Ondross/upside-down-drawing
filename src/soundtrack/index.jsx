@@ -23,7 +23,7 @@ export default () => {
   indices = shuffle([...Array(songs.length)].map((_, i) => i)),
   songIndex = S.data(0),
   playing = S.data(false),
-  audio = <audio src={songs[indices[songIndex()]]} />,
+  audio = <audio preload="none" src={songs[indices[songIndex()]]} />,
   showCredit = S.data(null),
   creditClassName = () => {
     if (showCredit() === null) {
