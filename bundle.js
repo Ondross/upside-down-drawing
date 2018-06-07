@@ -14204,9 +14204,9 @@ exports.default = () => {
       __div1_img1.src = _imageList.imageList[indices[imageIndex()]].src;
     });
     Surplus.S(function () {
-      __div1_div2_a1.target = "blank";
+      __div1_div2_a1.target = "_blank";
       __div1_div2_a1.href = _imageList.imageList[indices[imageIndex()]].attribution;
-      __div1_div2_a1.textContent = "Original";
+      __div1_div2_a1.textContent = "Image Source";
     });
     return __;
   }(),
@@ -14553,7 +14553,7 @@ __webpack_require__(350);
 exports.default = next => {
 
   const root = function () {
-    var __, __div1, __div2, __div3, __div4, __div5, __div6, __div7, __div7_a2;
+    var __, __div1, __div2, __div3, __div4, __div5, __div6, __div7, __div7_a2, __div8, __div8_a1;
     __ = Surplus.createElement("div", 'splash-container', null);
     __div1 = Surplus.createElement("div", "app-header", __);
     __div1.textContent = "Upside Down Drawing";
@@ -14575,6 +14575,11 @@ exports.default = next => {
     __div7_a2.href = "http://drawright.com/theory/";
     __div7_a2.textContent = "Drawing on the Right Side of the Brain";
     Surplus.createTextNode(" by Betty Edwards.", __div7);
+    __div8 = Surplus.createElement("div", "footer", __);
+    __div8_a1 = Surplus.createElement("a", null, __div8);
+    __div8_a1.target = "_blank";
+    __div8_a1.href = "http://drewheine.com";
+    __div8_a1.textContent = "Contact Me";
     return __;
   }();
 
@@ -33003,6 +33008,7 @@ exports.default = () => {
     var __;
     __ = Surplus.createElement("audio", null, null);
     Surplus.S(function () {
+      __.preload = "none";
       __.src = songs[indices[songIndex()]];
     });
     return __;
@@ -33063,10 +33069,10 @@ exports.default = () => {
     __insert2 = Surplus.createTextNode('', __);
     __insert3 = Surplus.createTextNode('', __);
     Surplus.S(function (__range) {
-      return Surplus.insert(__range, credit);
+      return Surplus.insert(__range, audio);
     }, { start: __insert1, end: __insert1 });
     Surplus.S(function (__range) {
-      return Surplus.insert(__range, audio);
+      return Surplus.insert(__range, credit);
     }, { start: __insert2, end: __insert2 });
     Surplus.S(function (__range) {
       return Surplus.insert(__range, button);
