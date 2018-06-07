@@ -2,6 +2,7 @@ import S from 's-js'
 import * as Surplus from 'surplus'
 import Images from 'upsideDownDrawing/Images'
 import Splash from 'upsideDownDrawing/Splash'
+import Soundtrack from 'upsideDownDrawing/Soundtrack'
 import Analytics from 'upsideDownDrawing/Analytics'
 require('upsideDownDrawing/css/style.css')
 
@@ -21,6 +22,7 @@ const view = S.root(() =>
         return <Images />
       }
     }}
+    <Soundtrack />
   </div>
 )
 

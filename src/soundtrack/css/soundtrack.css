@@ -1,0 +1,50 @@
+.soundtrack-container {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  text-align: right;
+}
+
+.soundtrack-icon {
+  width: 24px;
+  opacity: .6;
+  cursor: pointer;
+}
+
+.soundtrack-icon:hover {
+  opacity: .8;
+}
+
+.soundtrack-credit {
+  font-size: 12px;
+  display: none;
+}
+.soundtrack-credit.shown {
+  animation: fadein .8s;
+  opacity: 1;
+  display: block;
+}
+.soundtrack-credit.hidden {
+  animation: fadeout .8s;
+  opacity: 0;
+  display: block;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
