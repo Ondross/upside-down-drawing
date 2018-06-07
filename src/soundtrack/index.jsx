@@ -56,8 +56,8 @@ export default () => {
   }
 
   const root = <div className="soundtrack-container">
-    {credit}
     {audio}
+    {credit}
     {button}
   </div>
 

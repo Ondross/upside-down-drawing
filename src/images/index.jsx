@@ -71,7 +71,7 @@ export default () => {
       <div className="image-container">
         <img className={`drawing ${flipped() ? "" : "upside-down"}`} src={imageList[indices[imageIndex()]].src} />
         <div className="attribution">
-          <a target="blank" href={imageList[indices[imageIndex()]].attribution}>Original</a>
+          <a target="_blank" href={imageList[indices[imageIndex()]].attribution}>Image Source</a>
         </div>
       </div>
     </div>,
