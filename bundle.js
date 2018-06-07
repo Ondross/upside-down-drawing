@@ -13285,6 +13285,10 @@ var _Splash = __webpack_require__(349);
 
 var _Splash2 = _interopRequireDefault(_Splash);
 
+var _Soundtrack = __webpack_require__(365);
+
+var _Soundtrack2 = _interopRequireDefault(_Soundtrack);
+
 var _Analytics = __webpack_require__(352);
 
 var _Analytics2 = _interopRequireDefault(_Analytics);
@@ -13303,17 +13307,22 @@ const next = () => {
 };
 
 const view = _sJs2.default.root(() => function () {
-  var __;
+  var __, __insert1, __insert2;
   __ = Surplus.createElement("div", "app-container", null);
-  Surplus.S(function (__current) {
-    return Surplus.content(__, () => {
+  __insert1 = Surplus.createTextNode('', __);
+  __insert2 = Surplus.createTextNode('', __);
+  Surplus.S(function (__range) {
+    return Surplus.insert(__range, () => {
       if (showSplash()) {
         return (0, _Splash2.default)(next);
       } else {
         return (0, _Images2.default)({});
       }
-    }, __current);
-  }, '');
+    });
+  }, { start: __insert1, end: __insert1 });
+  Surplus.S(function (__range) {
+    return Surplus.insert(__range, (0, _Soundtrack2.default)({}));
+  }, { start: __insert2, end: __insert2 });
   return __;
 }());
 
@@ -32947,6 +32956,168 @@ exports = module.exports = __webpack_require__(93)(false);
 
 // module
 exports.push([module.i, "@viewport {\n  width: device-width;\n}\nhtml {\n  font-size: 62.5%;\n  width:100%;\n}\n\nbody {\n  font-family: 'IBM Plex Sans', sans-serif;\n  height: 100vh;\n  margin: 0;\n  padding: 0 3px;\n  display: flex;\n  justify-content: center;\n  font-size: 16px;\n  font-size: 1.6rem;\n  line-height: 1.8;\n  color: #373737;\n}\n\n.app-container {\n  width: 100%;\n  display: flex;\n  justify-content: center;\n}\n\n.button {\n  cursor: pointer;\n  border: 1px solid #efefef;\n  border-radius: 4px;\n  padding: 5px;\n  margin: 5px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  font-size: 21px;\n  font-size: 2.1rem;\n  opacity: .8;\n}\n\n.button:hover {\n  opacity: 1;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 365 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _sJs = __webpack_require__(51);
+
+var _sJs2 = _interopRequireDefault(_sJs);
+
+var _surplus = __webpack_require__(42);
+
+var Surplus = _interopRequireWildcard(_surplus);
+
+var _sArray = __webpack_require__(131);
+
+var _sArray2 = _interopRequireDefault(_sArray);
+
+var _surplusMixinData = __webpack_require__(132);
+
+var _surplusMixinData2 = _interopRequireDefault(_surplusMixinData);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+__webpack_require__(366);
+
+exports.default = () => {
+  const songs = ["/static/audio/birds/cormorant.mp3", "/static/audio/birds/crow.mp3", "/static/audio/birds/eagle.mp3", "/static/audio/birds/egret.mp3", "/static/audio/birds/finch.mp3", "/static/audio/birds/grebe.mp3", "/static/audio/birds/hawk.mp3", "/static/audio/birds/heron.mp3", "/static/audio/birds/mallard.mp3", "/static/audio/birds/sparrow.mp3", "/static/audio/birds/waxwing.mp3"],
+        shuffle = arr => arr.sort(() => Math.random() - 0.5),
+        indices = shuffle([...Array(songs.length)].map((_, i) => i)),
+        songIndex = _sJs2.default.data(0),
+        playing = _sJs2.default.data(false),
+        audio = function () {
+    var __;
+    __ = Surplus.createElement("audio", null, null);
+    Surplus.S(function () {
+      __.src = songs[indices[songIndex()]];
+    });
+    return __;
+  }(),
+        showCredit = _sJs2.default.data(null),
+        creditClassName = () => {
+    if (showCredit() === null) {
+      return '';
+    }
+    if (showCredit()) {
+      return 'shown';
+    }
+    return 'hidden';
+  },
+        credit = function () {
+    var __, __a2;
+    __ = Surplus.createElement("div", null, null);
+    Surplus.createTextNode("Music by ", __);
+    __a2 = Surplus.createElement("a", null, __);
+    __a2.target = "_blank";
+    __a2.href = "http://freemusicarchive.org/music/Chad_Crouch/";
+    __a2.textContent = "Chad Crouch";
+    Surplus.S(function () {
+      __.className = `soundtrack-credit ${creditClassName()}`;
+    });
+    return __;
+  }(),
+        togglePlaying = () => {
+    if (playing()) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    playing(!playing());
+    showCredit(true);
+    setTimeout(() => showCredit(false), 2000);
+  },
+        button = function () {
+    var __;
+    __ = Surplus.createElement("img", "soundtrack-icon", null);
+    Surplus.S(function () {
+      __.src = playing() ? "/static/icons/speaker.png" : "/static/icons/mute.png";
+      __.onclick = togglePlaying;
+    });
+    return __;
+  }();
+
+  audio.onended = () => {
+    const next = songIndex() >= songs.length - 1 ? 0 : songIndex() + 1;
+    songIndex(next);
+    audio.play();
+  };
+
+  const root = function () {
+    var __, __insert1, __insert2, __insert3;
+    __ = Surplus.createElement("div", "soundtrack-container", null);
+    __insert1 = Surplus.createTextNode('', __);
+    __insert2 = Surplus.createTextNode('', __);
+    __insert3 = Surplus.createTextNode('', __);
+    Surplus.S(function (__range) {
+      return Surplus.insert(__range, credit);
+    }, { start: __insert1, end: __insert1 });
+    Surplus.S(function (__range) {
+      return Surplus.insert(__range, audio);
+    }, { start: __insert2, end: __insert2 });
+    Surplus.S(function (__range) {
+      return Surplus.insert(__range, button);
+    }, { start: __insert3, end: __insert3 });
+    return __;
+  }();
+
+  return root;
+};
+
+/***/ }),
+/* 366 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(367);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(94)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./soundtrack.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./soundtrack.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 367 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(93)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".soundtrack-container {\n  position: absolute;\n  bottom: 4px;\n  right: 4px;\n  text-align: right;\n}\n\n.soundtrack-icon {\n  width: 24px;\n  opacity: .6;\n  cursor: pointer;\n}\n\n.soundtrack-icon:hover {\n  opacity: .8;\n}\n\n.soundtrack-credit {\n  font-size: 12px;\n  display: none;\n}\n.soundtrack-credit.shown {\n  animation: fadein .8s;\n  opacity: 1;\n  display: block;\n}\n.soundtrack-credit.hidden {\n  animation: fadeout .8s;\n  opacity: 0;\n  display: block;\n}\n\n@keyframes fadein {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes fadeout {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n    display: none;\n  }\n}\n\n", ""]);
 
 // exports
 
