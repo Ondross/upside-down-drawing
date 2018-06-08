@@ -42,3 +42,10 @@ body {
 .button:hover {
   opacity: 1;
 }
+
+
+@media (max-device-width: 731px) {
+  .app-container {
+    display: block;
+  }
+}
