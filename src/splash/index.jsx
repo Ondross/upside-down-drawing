@@ -28,7 +28,7 @@ export default (next) => {
         Start Drawing
       </div>
       <div className="footer">
-        Read more about upside down drawing in Chapter 4 of <a target="_blank" href="http://drawright.com/theory/">Drawing on the Right Side of the Brain</a> by Betty Edwards.
+        Read more about upside down drawing in Chapter 4 of <a target="_blank" href="http://drawright.com/theory/">Drawing on the Right Side of the Brain</a> by Dr. Betty Edwards.
       </div>
       <div className="footer">
         <a target="_blank" href="http://drewheine.com">Contact Me</a>
